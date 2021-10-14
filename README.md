@@ -1,8 +1,7 @@
 # D3 Event Handling
 
 This repository is your starting point for hw-05. Assignment details and instructions are below. 
-
-Link to your GitHub pages website: `[insert your *clickable* hyperlink here]`
+https://ds4200-fall21-sec02.github.io/hw-05-d3-event-handling-hw-05-d3-event-handling-rw-lp-wt/
 
 # Aim of the assignment
 
@@ -28,7 +27,7 @@ You should do all your edits locally after cloning this repository. Commit major
 
 ## Update hyperlinks
 
-1. Edit near the top of this `README.md` file to include a clickable hyperlink to the GitHub pages website for your repo. Replace `` `[insert your *clickable* hyperlink here]` `` with your clickable URL. 
+1. Edit near the top of this `README.md` file to include a clickable hyperlink to the GitHub pages website for your repo. Replace `` `https://ds4200-fall21-sec02.github.io/hw-05-d3-event-handling-hw-05-d3-event-handling-rw-lp-wt/` `` with your clickable URL. 
 
 1. In `index.html` update the GitHub repo URL with the URL of your repository. It is in the span with `id='forkongithub'`.
 
