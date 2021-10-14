@@ -34,5 +34,52 @@ let circle = svg.append('circle')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
 
+// Add color change function to circle
+  circle.on("click", function(d) {
+  d3.select(this)
+    .style("fill" , "blue")
+  })
+
+// Add mouseover function to square
+  rect.on("mouseover", function(d) {
+  d3.select(this)
+    .style("stroke" , "black")
+    .style("stroke-width",'5')
+})
+
+  rect.on("mouseout", function(d) {
+  d3.select(this)
+    .style("stroke" , "transparent")
+})
+
+//Add double click functions
+  rect.on("dblclick", function(d) {
+  d3.select("rect")
+    .style("fill","orange")
+  d3.select("circle")
+    .style("fill","orange")
+})
+
+circle.on("dblclick", function(d) {
+d3.select("rect")
+  .style("fill","orange")
+d3.select("circle")
+  .style("fill","orange")
+})
+
+//Add dragable functionality
+circle.on("drag", function(event,d) {
+d3.select(this)
+  .attr("cx", d3.event.x)
+  .attr("cy", d3.event.y);
+})
+
+rect.on("drag", function(event,d) {
+d3.select(this)
+  .attr("x", d3.event.x)
+  .attr("y", d3.event.y);
+    })
+
+
 
 
