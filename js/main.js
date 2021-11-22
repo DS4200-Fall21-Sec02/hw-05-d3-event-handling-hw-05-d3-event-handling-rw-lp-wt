@@ -10,34 +10,41 @@ let margin = {
   width = 500 - margin.left - margin.right,
   height = 500 - margin.top - margin.bottom;
 
-//SVG that will hold the visualization 
+//SVG that will hold the visualization
 let svg = d3.select('#vis')
   .append('svg')
   .attr('preserveAspectRatio', 'xMidYMid meet') // this will scale your visualization according to the size of its parent element and the page.
   .attr('width', '100%') // this is now required by Chrome to ensure the SVG shows up at all
-  .style('background-color', 'white') 
+  .style('background-color', 'white')
   .style('border', 'solid')
   .attr('viewBox', [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '))
 
-// Add a square 
+// Add a square
 let rect = svg.append('rect')
   .attr('x', '100')
   .attr('y', '200')
   .attr('width', '20%')
   .attr('height', '20%')
-  .attr('fill', '#a6cee3'); 
-
-// Add a circle 
-let circle = svg.append('circle') 
+  .attr('fill', '#a6cee3')
+  .call(d3.drag()
+    .on("drag", dragrect));
+// Add a circle
+let circle = svg.append('circle')
   .attr('cx', '350')
   .attr('cy', '250')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
-
+  .call(d3.drag()
+    .on("drag", dragcircle));
 // Add color change function to circle
   circle.on("click", function(d) {
-  d3.select(this)
+  d3.select("rect")
     .style("fill" , "blue")
+  })
+
+  rect.on("click", function(d) {
+  d3.select("circle")
+    .style("fill" , "red")
   })
 
 // Add mouseover function to square
@@ -50,6 +57,18 @@ let circle = svg.append('circle')
   rect.on("mouseout", function(d) {
   d3.select(this)
     .style("stroke" , "transparent")
+})
+
+// Add mouseover function to circle
+circle.on("mouseover", function(d) {
+d3.select(this)
+.style("stroke" , "black")
+.style("stroke-width",'5')
+})
+
+circle.on("mouseout", function(d) {
+d3.select(this)
+.style("stroke" , "transparent")
 })
 
 //Add double click functions
@@ -68,18 +87,16 @@ d3.select("circle")
 })
 
 //Add dragable functionality
-circle.on("drag", function(event,d) {
-d3.select(this)
-  .attr("cx", d3.event.x)
-  .attr("cy", d3.event.y);
-})
+function dragcircle(event, d) {
+  d3.select(this)
+    .attr("cx", event.x)
+    .attr("cy", event.y)
+    .raise();
+}
 
-rect.on("drag", function(event,d) {
-d3.select(this)
-  .attr("x", d3.event.x)
-  .attr("y", d3.event.y);
-    })
-
-
-
-
+function dragrect(event, d) {
+  d3.select(this)
+    .attr("x", event.x)
+    .attr("y", event.y)
+    .raise();
+}
